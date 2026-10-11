@@ -1,0 +1,21 @@
+package com.rbdip.bookstore.order;
+
+import java.math.BigDecimal;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Component
+public class LoggingOrderConfirmationSender implements OrderConfirmationSender {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoggingOrderConfirmationSender.class);
+
+    @Override
+    public void send(String customerName, Long orderId, BigDecimal total) {
+        LOGGER.info(
+                "[email] Dear {}, your order #{} for {} has been placed.",
+                customerName,
+                orderId,
+                total);
+    }
+}
